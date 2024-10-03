@@ -1,0 +1,316 @@
+#############################################################################################################
+This file contains all the payloads that are needed for the Mediware - Oracle Finance integration
+Each payload will be identified by a unique ID called PID
+#############################################################################################################
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ OUTBOUND PAYLOADS $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+=== PID-1 ===
+Name: Item definition
+{
+	"ItemDefinition": {
+		"ITC_ALIAS": "Item Number",
+		"ITN_STRIP": "Unit of Measure (Primary)",
+		"UO_SECONDARY" : "Unit of Measure (Secondary)"-- Mediware tag not available
+		"UN_CODE": "UOM",
+		"ITC_DESC": "Item Description",
+		"MCC_DESC": "Item Category",
+		"MGC_DESC": "Medicine Group",
+		"Brand" : "Brand"  -- Mediware tag not available
+		"MFC_DESC": "Manufacture",
+		"TXC_DESC": "Tax Code",
+		"MTC_DESC": "Item Type",
+		"CMC_DESC": "Generic Combination",
+		"ITC_MEDICINE": "Medicine",
+		"ITC_CONSUMABLE": "Consumable",
+		"ITC_EXTERNALMED": "Outside Medicine",
+		"ITC_STRENGTH": "Item Strength",
+		"ITC_HIGHRISK": "High Alert Medicine",
+		"ITC_CONTROLLEDDRUG": "Controlled Medicine",
+		"ITC_SEMICONTROLLED": "Semi Controlled Medicine",
+		"ITC_NARCOTIC": "Narcotic Medicine",
+		"ITC_HIGHVALUE": "High Value",
+		"ITC_REFRIGERATION": "Refrigeration",
+		"ITC_HAZARDOUS": "Hazardous",
+		"NON_Registered": "Non Registered", -- Mediware tag not available
+		"DHA_price": "DHA price controlled ", -- Mediware tag not available
+		"ITC_RESTRCTDANTIBIO": "Restricted Antibiotic",
+		"ITN_ANTIBIOORDERGRACEDAYS": "Restricted Antibiotic Grace Period",
+		"ITC_ECLAIMTYPE": "Eclaim Type",
+		"Regulatory_DRUG_CODE":"Regulatory Wise Drug code details", -- Mediware tag not available
+		"AUC_USERNAME": "Regulatory",
+		"ITC_DRGCODE": "Drug Code",
+		"ITC_CNTRLDRGCODE": "Controlled Drug code",
+		"DFC_DESC": "Dosage Form",
+		"ITN_LPRATE": "Purchase Rate",
+		"ITN_MRP": "MRP",
+		"ITC_MANUBARCODE": "Manufacture Barcode"
+	}
+}
+
+
+===PID-2===
+Name: Stock receipt (Stock transfer / order shipment)
+{
+    "_header": {
+        "docNum": "INV1129",
+        "guid": "DOC001260",
+        "transCode": "TD",
+        "dept": "P001",
+        "refillWhs": "S017",
+        "remarks": "Stock transfer from ",
+        "user": "D001",
+        "legalEntity": "NOVO",
+        "lines": [
+            {
+                "prodNum": "C770",
+                "lineNum": 1,
+                "batch": "45668",
+                "qty": 1,
+                "unit": "Nos",
+                "barcode": "2023279",
+                "purchPrice": "18.33",
+                "expDate": "31/12/2025",
+                "isIssue": "False"
+            }
+        ]
+    }
+}
+
+===PID-3===
+Name: Miscellaneous Issue
+{
+	"MiscIssue": {
+		"CON_TYPE": "Type",
+		"ITC_ALIAS": "Item Number",
+		"ITN_STRIP": "Unit of Measure",
+		"IDN_QTY": "Quantity",
+		"MHC_DESC": "Source Organization",
+		"OUC_NAME": "Source Sub-Inventory",
+		"ITC_DOCNO": "Case No.",
+		"BMC_IPOP": "Patient Type",
+		"LOCATOR": "LOCATOR", --Mediware tag not available
+		"PT_NO": "Patient Number",
+		"HOC_PTNAME": "Patient Name",
+		"BM_NO": "Bill No",
+		"BDN_GROSS": "Sale Price",
+		"BMN_DISAMT": "Discount",
+		"BDN_NET": "Net Price",
+		"DOC_NAME": "Doctor Name",
+		"DEPT_NAME": "Doctor Dept.",
+		"ITC_BATCHNO": "Batch No",
+		"MRC_REMARKS": "Remarks",
+		"USC_NAME": "Username",
+		"MRD_DATE": "Consumption Date",
+		"VSD_DATE": "Visit Date"
+	}
+}
+
+===PID-4===
+{
+	"SubInventoryTransfer": {
+		"SMC_TYPE": "Type",
+		"ITC_ALIAS": "Item",
+		"ITN_STRIP": "Unit of Measure",
+		"LOCATOR": "LOCATOR", --Mediware tag not available
+		"SDN_QTY": "Quantity",
+		"MHC_DESC": "Source Organization",
+		"OUC_DESC": "Source Sub-Inventory",
+		"PSC_DESC": "Destination Sub-Inventory",
+		"SMC_RETURBY": "Username",
+		"SMD_DATE": "Date"
+	}
+}
+
+
+
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ INBOUND PAYLOADS $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+===PID-5===
+Name: Item Consumption
+{
+	"itemConsumption": {
+		"transactionId": "124213",
+		"itemCode": "Item Number",
+		"uom": "Unit of Measure",
+		"qty": "Quantity",
+		"clinicName": "Source Organization",
+		"outletName": "Source Sub-Inventory",
+		"documentNumber": "Case No.",
+		"patientType": "Patient Type IP/OP",
+		"ptNo": "Patient Number",
+		"patientName": "Patient Name",
+		"invoiceNumber": "Bill No",
+		"gross": "Sale Price",
+		"discount": "Discount",
+		"net": "Net Price",
+		"doctor": "Doctor Dept.",
+		"batch": "Batch No",
+		"consumptionType": "Consumption Type",
+		"remark": "Remarks",
+		"user": "Username",
+		"consDate": "Consumption Date",
+		"visitDate": "Visit Date"
+	}
+}
+
+
+===PID-6===
+Name: Transfer Order Creation
+{
+	"TransferOrderCreation": {
+		"TRANSACTION_ID": "124213",
+		"ITC_ALIAS": "Item Number",
+		"ITN_STRIP": "Unit of Measure",
+		"SRN_QTY": "Quantity",
+		"DESTMHC_DESC": "Destination Organization",
+		"DEST_STNAME": "" --- We must add destination store name here
+		"Priority": --- RequestPriority
+		"SRC_OUCNAME": "Source Sub-Inventory",
+		"SR_NO": "Mediware Request Number",
+		"SRC_MHCDESC": "Source Request Organization", 
+		"SRC_REQUEST": "Requested user",
+		"SRD_DATE": "Requested Date", -- Date and time format
+		"SRC_REMARKS": "Remarks"
+	}
+}
+
+===PID-7===
+Name: Mediware Receipt
+{
+	"mediwareReceipt": {
+		"transactionId": "124213",
+		"mediwareReceiptNumber": "",
+		"lines": [
+			{
+				"lineNumber": 1,
+				"itemCode": "Item Number",
+				"uom": "Unit of Measure",
+				"qty": "Receipt Quantity",
+				"batch": "Lot Number",
+				"expDate": "Lot Expiry Date",
+				"clinicName": "Destination Organization",
+				"issueNumber": "Transfer Order Number",
+				"user": "User Name"
+			},
+			{
+				"lineNumber": 2,
+				"itemCode": "Item Number",
+				"uom": "Unit of Measure",
+				"qty": "Receipt Quantity",
+				"batch": "Lot Number",
+				"expDate": "Lot Expiry Date",
+				"clinicName": "Destination Organization",
+				"issueNumber": "Transfer Order Number",
+				"user": "User Name"
+			}
+		]
+	}
+}
+
+
+
+===PID-8===
+Name: Return Request Miscellaneous 
+{
+	"returnRequestMisc": {
+		"transactionId": "124213",
+		"returnRequestNumber": "",
+		"lines": [
+			{
+				"lineNumber": 1,
+				"itemCode": "Item Number",
+				"uom": "Unit of Measure",
+				"qty": "Quantity",
+				"batchNo": "Lot Number",
+				"expDate": "Lot Expiry Date",
+				"srcClinicName": "Source Organization",
+				"srcOutletName": "Source Sub-Inventory",
+				"destClinicName": "Destination Organization",
+				"destOutletName": "Destination Sub-Inventory",
+				"requestNumber": "Request Number",
+				"user": "Returned User"
+			},
+			{
+				"lineNumber": 2,
+				"itemCode": "Item Number",
+				"uom": "Unit of Measure",
+				"qty": "Quantity",
+				"batchNo": "Lot Number",
+				"expDate": "Lot Expiry Date",
+				"srcClinicName": "Source Organization",
+				"srcOutletName": "Source Sub-Inventory",
+				"destClinicName": "Destination Organization",
+				"destOutletName": "Destination Sub-Inventory",
+				"requestNumber": "Request Number",
+				"user": "Returned User"
+			}
+		]
+	}
+}
+
+
+===PID-9===
+Name: Miscellaneous Receipt
+{
+	"MiscReceipt": {
+	"TRANSACTION_ID": "124213",
+		"CON_TYPE": "Type",
+		"ITC_ALIAS": "Item Number",
+		"ITN_STRIP": "Unit of Measure",
+		"IDN_QTY": "Quantity",
+		"MHC_DESC": "Source Organization",
+		"OUC_NAME": "Source Sub-Inventory",
+		"LOCATOR": "LOCATOR",  --Mediware tag not available
+		"ITC_DOCNO": "Case No.",
+		"BMC_IPOP": "Patient Type",
+		"PT_NO": "Patient Number",
+		"HOC_PTNAME": "Patient Name",
+		"BM_NO": "Bill No",
+		"Return No": "Return Number"
+		"BDN_GROSS": "Sale Price",
+		"BMN_DISAMT": "Discount",
+		"BDN_NET": "Net Price",
+		"DOC_NAME": "Doctor Name",
+		"DEPT_NAME": "Doctor Dept.",
+		"ITC_BATCHNO": "Batch No",
+		"MRC_REMARKS": "Remarks",
+		"USC_NAME": "Username",
+		"MRD_DATE": "Consumption Date",
+		"VSD_DATE": "Visit Date"
+	}
+}
+
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ COMMON PAYLOADS $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+===PID-10===
+Name: Return Payload For Every Request)
+{
+    "responses": {
+        "code": "400",
+        "message": "Department does not exist.",
+        "status": "E"
+    }
+}
+
+
+===PID-11===
+Name: Authentication (get Token)
+{
+    "client_id": "ORACLEFUSION",
+    "client_secret": "8794AD6744986A9480983DE48CDC4DA6",
+    "grant_type": "client_credentials"
+}
+
+
+===PID-12===
+Name: Authentication Response
+{
+    "access_token": "81FnopBIaKJYrElBJnKvDkqwAEwY6ngLeMOGtvv9oVsY53rEzexJBQ",
+    "expires_in": 3600,
+    "token_type": "Bearer"
+}
+
+
+
