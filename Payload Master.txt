@@ -8,46 +8,42 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ OUTBOUND PAYLOADS $$$$$$$$$$$$$$$$$$$$$
 === PID-1 ===
 Name: Item definition
 {
-	"ItemDefinition": {
-		"ITC_ALIAS": "Item Number",
-		"ITN_STRIP": "Unit of Measure (Primary)",
-		"UO_SECONDARY" : "Unit of Measure (Secondary)"-- Mediware tag not available
-		"UN_CODE": "UOM",
-		"ITC_DESC": "Item Description",
-		"MCC_DESC": "Item Category",
-		"MGC_DESC": "Medicine Group",
-		"Brand" : "Brand"  -- Mediware tag not available
-		"MFC_DESC": "Manufacture",
-		"TXC_DESC": "Tax Code",
-		"MTC_DESC": "Item Type",
-		"CMC_DESC": "Generic Combination",
-		"ITC_MEDICINE": "Medicine",
-		"ITC_CONSUMABLE": "Consumable",
-		"ITC_EXTERNALMED": "Outside Medicine",
-		"ITC_STRENGTH": "Item Strength",
-		"ITC_HIGHRISK": "High Alert Medicine",
-		"ITC_CONTROLLEDDRUG": "Controlled Medicine",
-		"ITC_SEMICONTROLLED": "Semi Controlled Medicine",
-		"ITC_NARCOTIC": "Narcotic Medicine",
-		"ITC_HIGHVALUE": "High Value",
-		"ITC_REFRIGERATION": "Refrigeration",
-		"ITC_HAZARDOUS": "Hazardous",
-		"NON_Registered": "Non Registered", -- Mediware tag not available
-		"DHA_price": "DHA price controlled ", -- Mediware tag not available
-		"ITC_RESTRCTDANTIBIO": "Restricted Antibiotic",
-		"ITN_ANTIBIOORDERGRACEDAYS": "Restricted Antibiotic Grace Period",
-		"ITC_ECLAIMTYPE": "Eclaim Type",
-		"Regulatory_DRUG_CODE":"Regulatory Wise Drug code details", -- Mediware tag not available
-		"AUC_USERNAME": "Regulatory",
-		"ITC_DRGCODE": "Drug Code",
-		"ITC_CNTRLDRGCODE": "Controlled Drug code",
-		"DFC_DESC": "Dosage Form",
-		"ITN_LPRATE": "Purchase Rate",
-		"ITN_MRP": "MRP",
-		"ITC_MANUBARCODE": "Manufacture Barcode"
+	"itemDefinition": {
+		"itemCode": "Item Number",
+		"uom": "Unit of Measure (Primary)",				
+		"itemDescription": "Item Description",
+		"itemCategory": "Item Category",
+		"itemGroup": "Medicine Group",		
+		"manufacture": "Manufacture",
+		"tax": "Tax Code",
+		"itemType": "Item Type",
+		"genericCombination": "Generic Combination",
+		"isMedicine": "Medicine",
+		"isConsumable": "Consumable",
+		"isExternalMedicine": "Outside Medicine",
+		"itemStrength": "Item Strength",
+		"isHighRisk": "High Alert Medicine",
+		"isControlledDrug": "Controlled Medicine",
+		"isSemiControlledDrug": "Semi Controlled Medicine",
+		"isNarcotic": "Narcotic Medicine",
+		"isHighValue": "High Value",
+		"isRefrigerationRequired": "Refrigeration",
+		"isHazardous": "Hazardous",
+		"isNonRegistered": "Non Registered",  
+		"isDhaPriceControlled": "DHA price controlled", 
+		"isRestrictedAntibiotic": "Restricted Antibiotic",
+		"antibioticGracePeriodDays": "Restricted Antibiotic Grace Period",
+		"eclaimType": "Eclaim Type",
+		"regulatoryDrugCode": "Regulatory Wise Drug code details", 
+		"regulatoryUsername": "Regulatory",
+		"drugCode": "Drug Code",
+		"controlledDrugCode": "Controlled Drug code",
+		"dosageForm": "Dosage Form",
+		"purchaseRate": "Purchase Rate",
+		"mrp": "MRP",
+		"manufactureBarcode": "Manufacture Barcode"
 	}
 }
-
 
 ===PID-2===
 Name: Stock receipt (Stock transfer / order shipment)
@@ -159,23 +155,39 @@ Name: Item Consumption
 ===PID-6===
 Name: Transfer Order Creation
 {
-	"TransferOrderCreation": {
-		"TRANSACTION_ID": "124213",
-		"ITC_ALIAS": "Item Number",
-		"ITN_STRIP": "Unit of Measure",
-		"SRN_QTY": "Quantity",
-		"DESTMHC_DESC": "Destination Organization",
-		"DEST_STNAME": "" --- We must add destination store name here
-		"Priority": --- RequestPriority
-		"SRC_OUCNAME": "Source Sub-Inventory",
-		"SR_NO": "Mediware Request Number",
-		"SRC_MHCDESC": "Source Request Organization", 
-		"SRC_REQUEST": "Requested user",
-		"SRD_DATE": "Requested Date", -- Date and time format
-		"SRC_REMARKS": "Remarks"
+	"transferOrderCreation": {
+		"transactionId": "124213",
+		"supplyOrderReferenceNumber": "",
+		"lines": [
+			{
+				"lineNumber": 1,
+				"itemCode": "Item Number",
+				"uom": "Unit of Measure",
+				"qty": "Quantity",
+				"destClinicName": "Destination Organization",
+				"outletName": "Destination Sub-Inventory",
+				"requestNumber": "Mediware Request Number",
+				"srcClinicName": "Source Request Organization",
+				"user": "Requested user",
+				"reqDate": "Requested Date",
+				"remarks": "Remarks"
+			},
+			{
+				"lineNumber": 2,
+				"itemCode": "Item Number",
+				"uom": "Unit of Measure",
+				"qty": "Quantity",
+				"destClinicName": "Destination Organization",
+				"outletName": "Destination Sub-Inventory",
+				"requestNumber": "Mediware Request Number",
+				"srcClinicName": "Source Request Organization",
+				"user": "Requested user",
+				"reqDate": "Requested Date",
+				"remarks": "Remarks"
+			}
+		]
 	}
 }
-
 ===PID-7===
 Name: Mediware Receipt
 {
@@ -254,35 +266,63 @@ Name: Return Request Miscellaneous
 ===PID-9===
 Name: Miscellaneous Receipt
 {
-	"MiscReceipt": {
-	"TRANSACTION_ID": "124213",
-		"CON_TYPE": "Type",
-		"ITC_ALIAS": "Item Number",
-		"ITN_STRIP": "Unit of Measure",
-		"IDN_QTY": "Quantity",
-		"MHC_DESC": "Source Organization",
-		"OUC_NAME": "Source Sub-Inventory",
-		"LOCATOR": "LOCATOR",  --Mediware tag not available
-		"ITC_DOCNO": "Case No.",
-		"BMC_IPOP": "Patient Type",
-		"PT_NO": "Patient Number",
-		"HOC_PTNAME": "Patient Name",
-		"BM_NO": "Bill No",
-		"Return No": "Return Number"
-		"BDN_GROSS": "Sale Price",
-		"BMN_DISAMT": "Discount",
-		"BDN_NET": "Net Price",
-		"DOC_NAME": "Doctor Name",
-		"DEPT_NAME": "Doctor Dept.",
-		"ITC_BATCHNO": "Batch No",
-		"MRC_REMARKS": "Remarks",
-		"USC_NAME": "Username",
-		"MRD_DATE": "Consumption Date",
-		"VSD_DATE": "Visit Date"
+	"miscReceipt": {
+		"miscReceiptNumber": "56587",
+		"transactionId": "124213",
+		"lines": [
+			{
+				"lineNumber": 1,
+				"conType": "Type",
+				"itemCode": "Item Number",
+				"uom": "Unit of Measure",
+				"qty": "Quantity",
+				"srcClinicName": "Source Organization",
+				"srcOutletName": "Source Sub-Inventory",
+				"locator": "LOCATOR",
+				"docNumber": "Case No.",
+				"patientType": "Patient Type",
+				"ptNo": "Patient Number",
+				"patientName": "Patient Name",
+				"invoiceNumber": "Bill No",
+				"gross": "Sale Price",
+				"discount": "Discount",
+				"net": "Net Price",
+				"doctor": "Doctor Name",
+				"department": "Doctor Dept.",
+				"batch": "Batch No",
+				"remarks": "Remarks",
+				"user": "Username",
+				"consDate": "Consumption Date",
+				"visitDate": "Visit Date"
+			},
+			{
+				"lineNumber": 2,
+				"conType": "Type",
+				"itemCode": "Item Number",
+				"uom": "Unit of Measure",
+				"qty": "Quantity",
+				"srcClinicName": "Source Organization",
+				"srcOutletName": "Source Sub-Inventory",
+				"locator": "LOCATOR",
+				"docNumber": "Case No.",
+				"patientType": "Patient Type",
+				"ptNo": "Patient Number",
+				"patientName": "Patient Name",
+				"invoiceNumber": "Bill No",
+				"gross": "Sale Price",
+				"discount": "Discount",
+				"net": "Net Price",
+				"doctor": "Doctor Name",
+				"department": "Doctor Dept.",
+				"batch": "Batch No",
+				"remarks": "Remarks",
+				"user": "Username",
+				"consDate": "Consumption Date",
+				"visitDate": "Visit Date"
+			}
+		]
 	}
 }
-
-
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ COMMON PAYLOADS $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 ===PID-10===
 Name: Return Payload For Every Request)
@@ -311,6 +351,3 @@ Name: Authentication Response
     "expires_in": 3600,
     "token_type": "Bearer"
 }
-
-
-
