@@ -126,31 +126,61 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ INBOUND PAYLOADS $$$$$$$$$$$$$$$$$$$$$$
 ===PID-5===
 Name: Item Consumption
 {
-	"itemConsumption": {
-		"transactionId": "124213",
-		"itemCode": "Item Number",
-		"uom": "Unit of Measure",
-		"qty": "Quantity",
-		"clinicName": "Source Organization",
-		"outletName": "Source Sub-Inventory",
-		"documentNumber": "Case No.",
-		"patientType": "Patient Type IP/OP",
-		"ptNo": "Patient Number",
-		"patientName": "Patient Name",
-		"invoiceNumber": "Bill No",
-		"gross": "Sale Price",
-		"discount": "Discount",
-		"net": "Net Price",
-		"doctor": "Doctor Dept.",
-		"batch": "Batch No",
-		"consumptionType": "Consumption Type",
-		"remark": "Remarks",
-		"user": "Username",
-		"consDate": "Consumption Date",
-		"visitDate": "Visit Date"
-	}
+	"miscTransactions": [
+		{
+			"transactionId": "124213",
+			"lineNo": 1,
+			"consumptionType": "Medicine Return",
+			"itemCode": "DR0003",
+			"uom": "UN",
+			"qty": "10",
+			"srcClinicName": "Novomed Centers Al-Ain",
+			"srcOutletName": "Dental Gen",
+			"locator": "CC.1.1.1",
+			"docNumber": "Case No.",
+			"patientType": "Patient Type",
+			"ptNo": "Patient Number",
+			"patientName": "Patient Name",
+			"invoiceNumber": "Bill No",
+			"gross": "Sale Price",
+			"discount": "10",
+			"net": "Net Price",
+			"doctor": "Doctor Name",
+			"department": "Doctor Dept.",
+			"batch": "lot6653",
+			"remarks": "Remarks",
+			"user": "Username",
+			"consDate": "2024-10-11",
+			"visitDate": "2024-10-11"
+		},
+		{
+			"transactionId": "124213",
+			"consumptionType": "Medicine Return",
+			"itemCode": "DR0003",
+			"lineNo": 2,
+			"uom": "UN",
+			"qty": "10",
+			"srcClinicName": "Novomed Centers Al-Ain",
+			"srcOutletName": "Dental Gen",
+			"locator": "CC.1.1.1",
+			"docNumber": "Case No.",
+			"patientType": "Patient Type",
+			"ptNo": "Patient Number",
+			"patientName": "Patient Name",
+			"invoiceNumber": "Bill No",
+			"gross": "Sale Price",
+			"discount": "1",
+			"net": "Net Price",
+			"doctor": "Doctor Name",
+			"department": "Doctor Dept.",
+			"batch": "lot6653",
+			"remarks": "Remarks",
+			"user": "Username",
+			"consDate": "2024-10-21",
+			"visitDate": "2024-10-11"
+		}
+	]
 }
-
 
 ===PID-6===
 Name: Transfer Order Creation
